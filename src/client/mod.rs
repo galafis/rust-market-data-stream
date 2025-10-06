@@ -94,7 +94,7 @@ impl MarketDataClient {
                             }
                         }
                     }
-                    Some(Ok(Message::Ping(data))) => {
+                    Some(Ok(Message::Ping(_data))) => {
                         debug!("Received ping, sending pong");
                         // Pong is handled automatically by tokio-tungstenite
                     }
