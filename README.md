@@ -14,6 +14,24 @@
 
 A high-performance real-time market data streaming and processing engine built with Rust. This library provides an async WebSocket client for consuming market data feeds, with support for trades, quotes, and full order book snapshots.
 
+```mermaid
+flowchart LR
+    A[Exchange\nWebSocket] --> B[Connection Manager\nTokio / TLS]
+    B --> C[Message Parser\nSerde JSON]
+    C --> D[Data Stream\nBroadcast Channel]
+    D --> E1[Subscriber 1\nStatistics / VWAP]
+    D --> E2[Subscriber 2\nOrder Book]
+    D --> E3[Subscriber N\nStrategy Engine]
+
+    style A fill:#1a1a2e,stroke:#e94560,color:#fff
+    style B fill:#16213e,stroke:#0f3460,color:#fff
+    style C fill:#0f3460,stroke:#533483,color:#fff
+    style D fill:#533483,stroke:#e94560,color:#fff
+    style E1 fill:#16213e,stroke:#e94560,color:#fff
+    style E2 fill:#16213e,stroke:#e94560,color:#fff
+    style E3 fill:#16213e,stroke:#e94560,color:#fff
+```
+
 ### Key Features
 
 - **Async WebSocket Client**: Built on Tokio and tokio-tungstenite for efficient I/O
